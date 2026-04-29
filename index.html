@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tristan Jeanteaud-Desbourde — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --petrol: #2a5169;
+      --petrol-light: #3a6a85;
+      --petrol-pale: #e8f0f5;
+      --dark: #111416;
+      --mid: #4a5568;
+      --light: #f7f9fb;
+      --white: #ffffff;
+      --border: #d4e2eb;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      color: var(--dark);
+      background: var(--light);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(247,249,251,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--petrol);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--petrol); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 4rem;
+      gap: 4rem;
+      padding-top: 80px;
+    }
+
+    .hero-text { max-width: 520px; }
+
+    .hero-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 4vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--dark);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero-name span { color: var(--petrol); }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--mid);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .hero-contacts a {
+      font-size: 0.85rem;
+      color: var(--petrol);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-contacts a:hover { text-decoration: underline; }
+
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      animation: fadeIn 1s 0.5s forwards;
+    }
+
+    .hero-photo {
+      width: 340px;
+      height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 2px;
+      filter: grayscale(15%);
+      box-shadow: 0 20px 60px rgba(42,81,105,0.15);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--dark);
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* PARCOURS */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-item:last-child { border-bottom: none; }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      color: var(--petrol);
+      letter-spacing: 0.05em;
+      padding-top: 0.2rem;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.88rem;
+      color: var(--mid);
+    }
+
+    /* COMPETENCES */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .skills-group h3 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .skills-group li {
+      font-size: 0.88rem;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skills-group li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--petrol);
+      flex-shrink: 0;
+    }
+
+    /* PROJETS */
+    .projects-list { display: flex; flex-direction: column; gap: 0; }
+
+    .project-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-item:last-child { border-bottom: none; }
+
+    .project-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+
+    .project-date {
+      font-size: 0.78rem;
+      color: var(--petrol);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--petrol-pale);
+      color: var(--petrol);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+
+    .project-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-content p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+
+    .star-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      font-weight: 400;
+    }
+
+    /* AMBITIONS */
+    .ambitions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .ambition-card {
+      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--petrol);
+    }
+
+    .ambition-term {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 0.8rem;
+    }
+
+    .ambition-card p {
+      font-size: 0.88rem;
+      color: var(--mid);
+    }
+
+    /* CENTRES D'INTERET */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .interest-group h3 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--petrol);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .interest-group p {
+      font-size: 0.88rem;
+      color: var(--mid);
+      line-height: 1.8;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--petrol);
+      max-width: 100%;
+      padding: 5rem 4rem;
+    }
+
+    #contact .section-label { color: rgba(255,255,255,0.5); }
+    #contact .section-title { color: var(--white); border-color: rgba(255,255,255,0.15); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .contact-item-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .contact-item a, .contact-item span {
+      font-size: 0.95rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.75rem;
+      color: var(--mid);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; text-align: center; }
+      .hero-photo-wrap { order: -1; }
+      .hero-photo { width: 200px; height: 250px; }
+      section { padding: 4rem 1.5rem; }
+      .skills-grid, .ambitions-grid, .interests-grid { grid-template-columns: 1fr; }
+      .timeline-item, .project-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      #contact { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Tristan Jeanteaud-Desbourde</div>
+  <ul class="nav-links">
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#ambitions">Ambitions</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <p class="hero-label">Portfolio — BUT Informatique</p>
+    <h1 class="hero-name">Tristan<br><span>Jeanteaud-</span><br>Desbourde</h1>
+    <p class="hero-desc">
+      Étudiant en première année de BUT Informatique à l'IUT d'Orsay, passionné par la cybersécurité et le développement. Organisé, méthodique et exigeant dans mon travail.
+    </p>
+    <div class="hero-contacts">
+      <a href="mailto:tristan.jeanteaud@gmail.com">tristan.jeanteaud@gmail.com</a>
+      <a href="tel:0663174894">06 63 17 48 94</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <img class="hero-photo" src="photo.jpg" alt="Tristan Jeanteaud-Desbourde" />
+  </div>
+</div>
+
+<!-- PARCOURS -->
+<div class="section-divider"></div>
+<section id="parcours">
+  <p class="section-label">Parcours</p>
+  <h2 class="section-title">Formation & Expérience</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="timeline-date">2024 — présent</span>
+      <div class="timeline-content">
+        <h3>BUT Informatique — IUT d'Orsay</h3>
+        <p>Formation en développement, bases de données, algorithmique, réseaux et interaction humain-machine.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">2021 — 2024</span>
+      <div class="timeline-content">
+        <h3>Baccalauréat Général — Spécialités Mathématiques & NSI</h3>
+        <p>Obtenu avec les spécialités Mathématiques et Numérique et Sciences Informatiques.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <span class="timeline-date">Stage de 3ème</span>
+      <div class="timeline-content">
+        <h3>Cycles Delcayre — Paris</h3>
+        <p>Réparation de cycles, vente de marchandise et gestion des stocks. Première expérience en milieu professionnel, développant sens du service et rigueur opérationnelle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCES -->
+<div class="section-divider"></div>
+<section id="competences">
+  <p class="section-label">Compétences</p>
+  <h2 class="section-title">Savoir-faire & Outils</h2>
+  <div class="skills-grid">
+    <div class="skills-group">
+      <h3>Langages</h3>
+      <ul>
+        <li>Python</li>
+        <li>C++</li>
+        <li>HTML / CSS</li>
+        <li>SQL</li>
+        <li>Java</li>
+        <li>C# / XAML</li>
+      </ul>
+    </div>
+    <div class="skills-group">
+      <h3>Outils & Environnements</h3>
+      <ul>
+        <li>Linux</li>
+        <li>Oracle / SQL Developer</li>
+        <li>Eclipse / CodeBlocks</li>
+        <li>Visual Studio Code</li>
+        <li>Penpot</li>
+        <li>EduPython / Looping</li>
+      </ul>
+    </div>
+    <div class="skills-group">
+      <h3>Langues</h3>
+      <ul>
+        <li>Français — Langue maternelle</li>
+        <li>Anglais — B2</li>
+        <li>Espagnol — B1</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<div class="section-divider"></div>
+<section id="projets">
+  <p class="section-label">Réalisations</p>
+  <h2 class="section-title">Projets</h2>
+  <div class="projects-list">
+
+    <div class="project-item">
+      <div class="project-meta">
+        <span class="project-date">Mars 2025</span>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Puissance 4 en Python</h3>
+        <p><span class="star-label">Situation —</span> Projet libre non guidé réalisé en binôme.</p>
+        <p><span class="star-label">Tâche —</span> Concevoir et développer un jeu de Puissance 4 fonctionnel de A à Z.</p>
+        <p><span class="star-label">Action —</span> Analyse des besoins, découpage en tâches, répartition du travail, développement itératif avec mon binôme.</p>
+        <p><span class="star-label">Résultat —</span> Jeu fonctionnel livré dans les délais, avec gestion de la grille, détection de victoire et interface en console.</p>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <span class="project-date">Oct. 2025 — Jan. 2026</span>
+        <div class="project-tags">
+          <span class="tag">C++</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Jeu vidéo en C++</h3>
+        <p><span class="star-label">Situation —</span> Projet guidé par étapes réalisé en binôme dans le cadre du BUT.</p>
+        <p><span class="star-label">Tâche —</span> Développer un jeu vidéo simpliste en suivant un cahier des charges progressif.</p>
+        <p><span class="star-label">Action —</span> Apprentissage du C++, application des concepts objets, coordination avec le binôme à chaque étape.</p>
+        <p><span class="star-label">Résultat —</span> Jeu finalisé couvrant l'ensemble des fonctionnalités demandées.</p>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <span class="project-date">Oct. 2025 — Jan. 2026</span>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Site internet — Agence de voyage fictive Minexplo</h3>
+        <p><span class="star-label">Situation —</span> Projet de communication et développement web en binôme.</p>
+        <p><span class="star-label">Tâche —</span> Créer de toutes pièces le site d'une agence de voyage fictive, de la conception à la mise en ligne.</p>
+        <p><span class="star-label">Action —</span> Définition de la charte graphique, structuration des pages en HTML/CSS, répartition claire des tâches.</p>
+        <p><span class="star-label">Résultat —</span> Site complet et cohérent présentant l'agence, ses destinations et ses services.</p>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <span class="project-date">Oct. 2025 — Jan. 2026</span>
+        <div class="project-tags">
+          <span class="tag">SQL</span>
+          <span class="tag">Oracle</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Création d'une base de données</h3>
+        <p><span class="star-label">Situation —</span> Projet réalisé seul puis en binôme à partir d'informations récoltées auprès d'une entreprise.</p>
+        <p><span class="star-label">Tâche —</span> Modéliser et implémenter une base de données relationnelle à partir de besoins réels.</p>
+        <p><span class="star-label">Action —</span> Recueil d'informations, modélisation (MCD/MLD), création et alimentation de la base sous Oracle.</p>
+        <p><span class="star-label">Résultat —</span> Base de données fonctionnelle répondant aux besoins identifiés.</p>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-meta">
+        <span class="project-date">Nov. 2025 — Jan. 2026</span>
+        <div class="project-tags">
+          <span class="tag">Gestion de projet</span>
+        </div>
+      </div>
+      <div class="project-content">
+        <h3>Recueil de besoins pour un projet informatique</h3>
+        <p><span class="star-label">Situation —</span> Projet en groupe de 4 personnes.</p>
+        <p><span class="star-label">Tâche —</span> Identifier et formaliser les besoins d'un commanditaire en vue de la réalisation d'un site internet.</p>
+        <p><span class="star-label">Action —</span> Interviews, synthèse des besoins, rédaction du cahier des charges, coordination en équipe.</p>
+        <p><span class="star-label">Résultat —</span> Document de recueil de besoins structuré et validé, prêt pour la phase de développement.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AMBITIONS -->
+<div class="section-divider"></div>
+<section id="ambitions">
+  <p class="section-label">Projet professionnel</p>
+  <h2 class="section-title">Ambitions</h2>
+  <div class="ambitions-grid">
+    <div class="ambition-card">
+      <p class="ambition-term">Court terme</p>
+      <p>Trouver un stage d'Avril à Juillet 2027 dans le domaine informatique, idéalement en développement ou en cybersécurité, pour acquérir ma première expérience professionnelle significative.</p>
+    </div>
+    <div class="ambition-card">
+      <p class="ambition-term">Moyen terme</p>
+      <p>Intégrer une école d'ingénieur — Telecom SudParis en priorité — pour me spécialiser dans la cybersécurité et approfondir mes compétences techniques.</p>
+    </div>
+    <div class="ambition-card">
+      <p class="ambition-term">Long terme</p>
+      <p>Exercer un métier d'ingénieur en cybersécurité ou en développement dans un environnement exigeant, où la rigueur et la résolution de problèmes complexes sont au cœur du quotidien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CENTRES D'INTERET -->
+<div class="section-divider"></div>
+<section id="interets">
+  <p class="section-label">Centres d'intérêt</p>
+  <h2 class="section-title">Passions & Loisirs</h2>
+  <div class="interests-grid">
+    <div class="interest-group">
+      <h3>Sport</h3>
+      <p>Football — aussi bien en tant que pratiquant que spectateur. Suivi régulier des compétitions, sens du collectif et de la tactique.</p>
+    </div>
+    <div class="interest-group">
+      <h3>Culture</h3>
+      <p>Passionné de mangas et d'animes depuis de nombreuses années. Amateur de jeux vidéo, univers qui nourrit également mon intérêt pour le développement.</p>
+    </div>
+    <div class="interest-group">
+      <h3>Musique</h3>
+      <p>Écoute quotidienne de rap et R&B. La musique accompagne mon travail et ma créativité au quotidien.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Me contacter</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="contact-item-label">Email</span>
+        <a href="mailto:tristan.jeanteaud@gmail.com">tristan.jeanteaud@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Téléphone</span>
+        <span>06 63 17 48 94</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Formation</span>
+        <span>BUT Informatique — IUT d'Orsay</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-label">Recherche</span>
+        <span>Stage Avril — Juillet 2027</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Tristan Jeanteaud-Desbourde
+</footer>
+
+</body>
+</html>
