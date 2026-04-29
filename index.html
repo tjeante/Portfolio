@@ -4,29 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tristan Jeanteaud-Desbourde — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --petrol: #2a5169;
-      --petrol-light: #3a6a85;
-      --petrol-pale: #e8f0f5;
-      --dark: #111416;
-      --mid: #4a5568;
-      --light: #f7f9fb;
-      --white: #ffffff;
-      --border: #d4e2eb;
+      --blue: #2e6fa3;
+      --blue-light: #4a8bbf;
+      --blue-pale: #ddeaf5;
+      --blue-soft: #eef5fb;
+      --dark: #1e2a35;
+      --mid: #5a6a7a;
+      --light: #efefef;
+      --card: #ffffff;
+      --border: #d8e2ec;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
       background: var(--light);
-      line-height: 1.7;
+      color: var(--dark);
+      line-height: 1.75;
     }
 
     /* NAV */
@@ -34,403 +34,422 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
+      background: var(--card);
+      border-bottom: 2px solid var(--blue-pale);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 4rem;
-      background: rgba(247,249,251,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
+      padding: 1rem 3rem;
+      box-shadow: 0 2px 12px rgba(46,111,163,0.07);
     }
 
     .nav-name {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      color: var(--petrol);
+      color: var(--blue);
+      letter-spacing: 0.02em;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 2rem;
       list-style: none;
     }
 
     .nav-links a {
       text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--mid);
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--petrol); }
+    .nav-links a:hover { color: var(--blue); }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 0 4rem;
-      gap: 4rem;
-      padding-top: 80px;
+    /* PAGE WRAPPER */
+    .page {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .hero-text { max-width: 520px; }
+    /* HERO CARD */
+    .hero-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(46,111,163,0.08);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2.5rem;
+      padding: 3rem;
+      align-items: center;
+      animation: fadeUp 0.7s 0.1s both;
+    }
 
-    .hero-label {
+    .hero-tag {
+      display: inline-block;
+      background: var(--blue-pale);
+      color: var(--blue);
       font-size: 0.72rem;
-      letter-spacing: 0.2em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--petrol);
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s forwards;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
     }
 
     .hero-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 4vw, 4rem);
-      font-weight: 300;
-      line-height: 1.1;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
       color: var(--dark);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s forwards;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
     }
 
-    .hero-name span { color: var(--petrol); }
-
-    .hero-desc {
+    .hero-sub {
       font-size: 0.95rem;
       color: var(--mid);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.6s forwards;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
     }
 
     .hero-contacts {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.8s forwards;
+      gap: 0.3rem;
     }
 
     .hero-contacts a {
-      font-size: 0.85rem;
-      color: var(--petrol);
+      font-size: 0.88rem;
+      color: var(--blue);
       text-decoration: none;
-      letter-spacing: 0.03em;
+      font-weight: 600;
     }
 
     .hero-contacts a:hover { text-decoration: underline; }
 
-    .hero-photo-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      animation: fadeIn 1s 0.5s forwards;
-    }
-
     .hero-photo {
-      width: 340px;
-      height: 420px;
+      width: 200px;
+      height: 240px;
       object-fit: cover;
       object-position: center top;
-      border-radius: 2px;
-      filter: grayscale(15%);
-      box-shadow: 0 20px 60px rgba(42,81,105,0.15);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(46,111,163,0.15);
     }
 
-    /* SECTIONS */
-    section {
-      padding: 6rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--petrol);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: var(--dark);
-      margin-bottom: 3rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* PARCOURS */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-
-    .timeline-item {
+    /* CARDS GRID */
+    .cards-grid {
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2rem;
-      padding: 1.8rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .timeline-item:last-child { border-bottom: none; }
-
-    .timeline-date {
-      font-size: 0.78rem;
-      color: var(--petrol);
-      letter-spacing: 0.05em;
-      padding-top: 0.2rem;
-    }
-
-    .timeline-content h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-content p {
-      font-size: 0.88rem;
-      color: var(--mid);
-    }
-
-    /* COMPETENCES */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
 
-    .skills-group h3 {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--petrol);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+    .cards-grid.full { grid-template-columns: 1fr; }
+
+    /* CARD */
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(46,111,163,0.06);
+      padding: 2rem 2.2rem;
+      animation: fadeUp 0.7s both;
     }
 
-    .skills-group ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .skills-group li {
-      font-size: 0.88rem;
-      color: var(--mid);
+    .card-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
+      margin-bottom: 1.6rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--blue-pale);
     }
 
-    .skills-group li::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--petrol);
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--blue-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
-    /* PROJETS */
-    .projects-list { display: flex; flex-direction: column; gap: 0; }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
 
-    .project-item {
+    /* TIMELINE */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+
+    .tl-item {
+      display: flex;
+      gap: 1.2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--blue-soft);
+    }
+
+    .tl-item:last-child { border-bottom: none; }
+
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--blue);
+      border-radius: 50%;
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .tl-date {
+      font-size: 0.75rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    .tl-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--dark);
+      margin-bottom: 0.2rem;
+    }
+
+    .tl-desc {
+      font-size: 0.83rem;
+      color: var(--mid);
+    }
+
+    /* SKILLS */
+    .skills-cols {
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid var(--blue-pale);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+    }
+
+    .pill.lang {
+      background: #f0f5f0;
+      color: #3a6b3a;
+      border-color: #c8dfc8;
+    }
+
+    /* PROJETS */
+    .project-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--blue-soft);
     }
 
     .project-item:last-child { border-bottom: none; }
 
-    .project-meta { display: flex; flex-direction: column; gap: 0.5rem; }
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--dark);
+    }
 
     .project-date {
-      font-size: 0.78rem;
-      color: var(--petrol);
+      font-size: 0.75rem;
+      color: var(--blue);
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.3rem;
+      margin-bottom: 0.8rem;
     }
 
     .tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: var(--petrol-pale);
-      color: var(--petrol);
-      padding: 0.2rem 0.5rem;
-      border-radius: 2px;
-    }
-
-    .project-content h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-content p {
-      font-size: 0.88rem;
-      color: var(--mid);
-      margin-bottom: 0.5rem;
-    }
-
-    .star-label {
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--petrol);
-      font-weight: 400;
+      background: var(--blue-pale);
+      color: var(--blue);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
     }
+
+    .star-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0.3rem 0.8rem;
+      font-size: 0.83rem;
+    }
+
+    .star-key {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding-top: 0.05rem;
+    }
+
+    .star-val { color: var(--mid); }
 
     /* AMBITIONS */
-    .ambitions-grid {
+    .ambitions-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.2rem;
     }
 
-    .ambition-card {
-      padding: 2rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--petrol);
+    .ambition-block {
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-pale);
+      border-radius: 8px;
+      padding: 1.3rem;
+      border-top: 3px solid var(--blue);
     }
 
     .ambition-term {
       font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--petrol);
-      margin-bottom: 0.8rem;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
     }
 
-    .ambition-card p {
-      font-size: 0.88rem;
+    .ambition-block p {
+      font-size: 0.84rem;
       color: var(--mid);
     }
 
-    /* CENTRES D'INTERET */
-    .interests-grid {
+    /* INTERETS */
+    .interests-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.2rem;
     }
 
-    .interest-group h3 {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
+    .interest-block {
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-pale);
+      border-radius: 8px;
+      padding: 1.3rem;
+    }
+
+    .interest-cat {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--petrol);
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--border);
+      color: var(--blue);
+      margin-bottom: 0.5rem;
     }
 
-    .interest-group p {
-      font-size: 0.88rem;
+    .interest-block p {
+      font-size: 0.84rem;
       color: var(--mid);
-      line-height: 1.8;
     }
 
-    /* CONTACT */
-    #contact {
-      background: var(--petrol);
-      max-width: 100%;
-      padding: 5rem 4rem;
-    }
-
-    #contact .section-label { color: rgba(255,255,255,0.5); }
-    #contact .section-title { color: var(--white); border-color: rgba(255,255,255,0.15); }
-
+    /* CONTACT CARD */
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      gap: 1.2rem;
     }
 
-    .contact-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
+    .contact-block {
+      background: var(--blue-soft);
+      border: 1px solid var(--blue-pale);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
     }
 
-    .contact-item-label {
+    .contact-label {
       font-size: 0.7rem;
-      letter-spacing: 0.15em;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: var(--blue);
+      margin-bottom: 0.3rem;
     }
 
-    .contact-item a, .contact-item span {
-      font-size: 0.95rem;
-      color: var(--white);
+    .contact-block a, .contact-block span {
+      font-size: 0.9rem;
+      color: var(--dark);
       text-decoration: none;
+      font-weight: 600;
     }
 
-    .contact-item a:hover { text-decoration: underline; }
+    .contact-block a:hover { color: var(--blue); }
 
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 2rem;
-      font-size: 0.75rem;
+      padding: 1.5rem;
+      font-size: 0.78rem;
       color: var(--mid);
-      border-top: 1px solid var(--border);
     }
 
     /* ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* DIVIDER */
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; text-align: center; }
-      .hero-photo-wrap { order: -1; }
-      .hero-photo { width: 200px; height: 250px; }
-      section { padding: 4rem 1.5rem; }
-      .skills-grid, .ambitions-grid, .interests-grid { grid-template-columns: 1fr; }
-      .timeline-item, .project-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { gap: 1rem; }
+      .page { padding: 5rem 1rem 2rem; }
+      .hero-card { grid-template-columns: 1fr; }
+      .hero-photo { width: 140px; height: 170px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .skills-cols { grid-template-columns: 1fr; }
+      .ambitions-row, .interests-row { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
-      #contact { padding: 4rem 1.5rem; }
+      .star-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -447,256 +466,245 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-text">
-    <p class="hero-label">Portfolio — BUT Informatique</p>
-    <h1 class="hero-name">Tristan<br><span>Jeanteaud-</span><br>Desbourde</h1>
-    <p class="hero-desc">
-      Étudiant en première année de BUT Informatique à l'IUT d'Orsay, passionné par la cybersécurité et le développement. Organisé, méthodique et exigeant dans mon travail.
-    </p>
-    <div class="hero-contacts">
-      <a href="mailto:tristan.jeanteaud@gmail.com">tristan.jeanteaud@gmail.com</a>
-      <a href="tel:0663174894">06 63 17 48 94</a>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero-card">
+    <div>
+      <div class="hero-tag">Portfolio — BUT Informatique · IUT d'Orsay</div>
+      <h1 class="hero-name">Tristan<br>Jeanteaud-Desbourde</h1>
+      <p class="hero-sub">Étudiant en 1ère année de BUT Informatique, passionné par la cybersécurité et le développement. Rigoureux, méthodique et toujours soucieux de la qualité de mon travail.</p>
+      <div class="hero-contacts">
+        <a href="mailto:tristan.jeanteaud@gmail.com">✉ tristan.jeanteaud@gmail.com</a>
+        <a href="tel:0663174894">📞 06 63 17 48 94</a>
+      </div>
     </div>
-  </div>
-  <div class="hero-photo-wrap">
     <img class="hero-photo" src="photo.jpg" alt="Tristan Jeanteaud-Desbourde" />
   </div>
-</div>
 
-<!-- PARCOURS -->
-<div class="section-divider"></div>
-<section id="parcours">
-  <p class="section-label">Parcours</p>
-  <h2 class="section-title">Formation & Expérience</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <span class="timeline-date">2024 — présent</span>
-      <div class="timeline-content">
-        <h3>BUT Informatique — IUT d'Orsay</h3>
-        <p>Formation en développement, bases de données, algorithmique, réseaux et interaction humain-machine.</p>
+  <!-- PARCOURS + COMPETENCES -->
+  <div class="cards-grid" id="parcours">
+
+    <div class="card" style="animation-delay:0.15s">
+      <div class="card-header">
+        <div class="card-icon">🎓</div>
+        <h2 class="card-title">Parcours</h2>
       </div>
-    </div>
-    <div class="timeline-item">
-      <span class="timeline-date">2021 — 2024</span>
-      <div class="timeline-content">
-        <h3>Baccalauréat Général — Spécialités Mathématiques & NSI</h3>
-        <p>Obtenu avec les spécialités Mathématiques et Numérique et Sciences Informatiques.</p>
-      </div>
-    </div>
-    <div class="timeline-item">
-      <span class="timeline-date">Stage de 3ème</span>
-      <div class="timeline-content">
-        <h3>Cycles Delcayre — Paris</h3>
-        <p>Réparation de cycles, vente de marchandise et gestion des stocks. Première expérience en milieu professionnel, développant sens du service et rigueur opérationnelle.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPETENCES -->
-<div class="section-divider"></div>
-<section id="competences">
-  <p class="section-label">Compétences</p>
-  <h2 class="section-title">Savoir-faire & Outils</h2>
-  <div class="skills-grid">
-    <div class="skills-group">
-      <h3>Langages</h3>
-      <ul>
-        <li>Python</li>
-        <li>C++</li>
-        <li>HTML / CSS</li>
-        <li>SQL</li>
-        <li>Java</li>
-        <li>C# / XAML</li>
-      </ul>
-    </div>
-    <div class="skills-group">
-      <h3>Outils & Environnements</h3>
-      <ul>
-        <li>Linux</li>
-        <li>Oracle / SQL Developer</li>
-        <li>Eclipse / CodeBlocks</li>
-        <li>Visual Studio Code</li>
-        <li>Penpot</li>
-        <li>EduPython / Looping</li>
-      </ul>
-    </div>
-    <div class="skills-group">
-      <h3>Langues</h3>
-      <ul>
-        <li>Français — Langue maternelle</li>
-        <li>Anglais — B2</li>
-        <li>Espagnol — B1</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PROJETS -->
-<div class="section-divider"></div>
-<section id="projets">
-  <p class="section-label">Réalisations</p>
-  <h2 class="section-title">Projets</h2>
-  <div class="projects-list">
-
-    <div class="project-item">
-      <div class="project-meta">
-        <span class="project-date">Mars 2025</span>
-        <div class="project-tags">
-          <span class="tag">Python</span>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-date">2024 — présent</div>
+            <div class="tl-title">BUT Informatique — IUT d'Orsay</div>
+            <div class="tl-desc">Développement, bases de données, algorithmique, réseaux, IHM.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-date">2021 — 2024</div>
+            <div class="tl-title">Baccalauréat Général</div>
+            <div class="tl-desc">Spécialités Mathématiques & NSI (Numérique et Sciences Informatiques).</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-date">Stage de 3ème</div>
+            <div class="tl-title">Cycles Delcayre — Paris</div>
+            <div class="tl-desc">Réparation de cycles, vente et gestion des stocks. Développement du sens du service et de la rigueur en milieu professionnel.</div>
+          </div>
         </div>
       </div>
-      <div class="project-content">
-        <h3>Puissance 4 en Python</h3>
-        <p><span class="star-label">Situation —</span> Projet libre non guidé réalisé en binôme.</p>
-        <p><span class="star-label">Tâche —</span> Concevoir et développer un jeu de Puissance 4 fonctionnel de A à Z.</p>
-        <p><span class="star-label">Action —</span> Analyse des besoins, découpage en tâches, répartition du travail, développement itératif avec mon binôme.</p>
-        <p><span class="star-label">Résultat —</span> Jeu fonctionnel livré dans les délais, avec gestion de la grille, détection de victoire et interface en console.</p>
-      </div>
     </div>
 
-    <div class="project-item">
-      <div class="project-meta">
-        <span class="project-date">Oct. 2025 — Jan. 2026</span>
-        <div class="project-tags">
-          <span class="tag">C++</span>
+    <div class="card" id="competences" style="animation-delay:0.25s">
+      <div class="card-header">
+        <div class="card-icon">💡</div>
+        <h2 class="card-title">Compétences</h2>
+      </div>
+      <div class="skills-cols">
+        <div>
+          <div class="skill-group-title">Langages</div>
+          <div class="skill-pills">
+            <span class="pill">Python</span>
+            <span class="pill">C++</span>
+            <span class="pill">HTML</span>
+            <span class="pill">CSS</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Java</span>
+            <span class="pill">C#</span>
+          </div>
         </div>
-      </div>
-      <div class="project-content">
-        <h3>Jeu vidéo en C++</h3>
-        <p><span class="star-label">Situation —</span> Projet guidé par étapes réalisé en binôme dans le cadre du BUT.</p>
-        <p><span class="star-label">Tâche —</span> Développer un jeu vidéo simpliste en suivant un cahier des charges progressif.</p>
-        <p><span class="star-label">Action —</span> Apprentissage du C++, application des concepts objets, coordination avec le binôme à chaque étape.</p>
-        <p><span class="star-label">Résultat —</span> Jeu finalisé couvrant l'ensemble des fonctionnalités demandées.</p>
-      </div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-meta">
-        <span class="project-date">Oct. 2025 — Jan. 2026</span>
-        <div class="project-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
+        <div>
+          <div class="skill-group-title">Langues</div>
+          <div class="skill-pills">
+            <span class="pill lang">Français — Natif</span>
+            <span class="pill lang">Anglais — B2</span>
+            <span class="pill lang">Espagnol — B1</span>
+          </div>
         </div>
-      </div>
-      <div class="project-content">
-        <h3>Site internet — Agence de voyage fictive Minexplo</h3>
-        <p><span class="star-label">Situation —</span> Projet de communication et développement web en binôme.</p>
-        <p><span class="star-label">Tâche —</span> Créer de toutes pièces le site d'une agence de voyage fictive, de la conception à la mise en ligne.</p>
-        <p><span class="star-label">Action —</span> Définition de la charte graphique, structuration des pages en HTML/CSS, répartition claire des tâches.</p>
-        <p><span class="star-label">Résultat —</span> Site complet et cohérent présentant l'agence, ses destinations et ses services.</p>
-      </div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-meta">
-        <span class="project-date">Oct. 2025 — Jan. 2026</span>
-        <div class="project-tags">
-          <span class="tag">SQL</span>
-          <span class="tag">Oracle</span>
+        <div style="grid-column: 1 / -1; margin-top: 0.5rem;">
+          <div class="skill-group-title">Outils</div>
+          <div class="skill-pills">
+            <span class="pill">Linux</span>
+            <span class="pill">Oracle</span>
+            <span class="pill">Eclipse</span>
+            <span class="pill">CodeBlocks</span>
+          </div>
         </div>
-      </div>
-      <div class="project-content">
-        <h3>Création d'une base de données</h3>
-        <p><span class="star-label">Situation —</span> Projet réalisé seul puis en binôme à partir d'informations récoltées auprès d'une entreprise.</p>
-        <p><span class="star-label">Tâche —</span> Modéliser et implémenter une base de données relationnelle à partir de besoins réels.</p>
-        <p><span class="star-label">Action —</span> Recueil d'informations, modélisation (MCD/MLD), création et alimentation de la base sous Oracle.</p>
-        <p><span class="star-label">Résultat —</span> Base de données fonctionnelle répondant aux besoins identifiés.</p>
-      </div>
-    </div>
-
-    <div class="project-item">
-      <div class="project-meta">
-        <span class="project-date">Nov. 2025 — Jan. 2026</span>
-        <div class="project-tags">
-          <span class="tag">Gestion de projet</span>
-        </div>
-      </div>
-      <div class="project-content">
-        <h3>Recueil de besoins pour un projet informatique</h3>
-        <p><span class="star-label">Situation —</span> Projet en groupe de 4 personnes.</p>
-        <p><span class="star-label">Tâche —</span> Identifier et formaliser les besoins d'un commanditaire en vue de la réalisation d'un site internet.</p>
-        <p><span class="star-label">Action —</span> Interviews, synthèse des besoins, rédaction du cahier des charges, coordination en équipe.</p>
-        <p><span class="star-label">Résultat —</span> Document de recueil de besoins structuré et validé, prêt pour la phase de développement.</p>
       </div>
     </div>
 
   </div>
-</section>
 
-<!-- AMBITIONS -->
-<div class="section-divider"></div>
-<section id="ambitions">
-  <p class="section-label">Projet professionnel</p>
-  <h2 class="section-title">Ambitions</h2>
-  <div class="ambitions-grid">
-    <div class="ambition-card">
-      <p class="ambition-term">Court terme</p>
-      <p>Trouver un stage d'Avril à Juillet 2027 dans le domaine informatique, idéalement en développement ou en cybersécurité, pour acquérir ma première expérience professionnelle significative.</p>
+  <!-- PROJETS -->
+  <div class="card cards-grid full" id="projets" style="animation-delay:0.3s">
+    <div class="card-header">
+      <div class="card-icon">🛠️</div>
+      <h2 class="card-title">Projets réalisés</h2>
     </div>
-    <div class="ambition-card">
-      <p class="ambition-term">Moyen terme</p>
-      <p>Intégrer une école d'ingénieur — Telecom SudParis en priorité — pour me spécialiser dans la cybersécurité et approfondir mes compétences techniques.</p>
+
+    <div class="project-item">
+      <div class="project-top">
+        <div class="project-title">Puissance 4 en Python</div>
+        <div class="project-date">Mars 2025</div>
+      </div>
+      <div class="project-tags"><span class="tag">Python</span><span class="tag">Binôme</span></div>
+      <div class="star-row">
+        <span class="star-key">Situation</span><span class="star-val">Projet libre non guidé réalisé en binôme.</span>
+        <span class="star-key">Tâche</span><span class="star-val">Concevoir et développer un jeu de Puissance 4 fonctionnel de A à Z.</span>
+        <span class="star-key">Action</span><span class="star-val">Analyse des besoins, découpage en tâches, répartition du travail, développement itératif.</span>
+        <span class="star-key">Résultat</span><span class="star-val">Jeu fonctionnel livré dans les délais avec gestion de la grille et détection de victoire.</span>
+      </div>
     </div>
-    <div class="ambition-card">
-      <p class="ambition-term">Long terme</p>
-      <p>Exercer un métier d'ingénieur en cybersécurité ou en développement dans un environnement exigeant, où la rigueur et la résolution de problèmes complexes sont au cœur du quotidien.</p>
+
+    <div class="project-item">
+      <div class="project-top">
+        <div class="project-title">Jeu vidéo en C++</div>
+        <div class="project-date">Oct. 2025 — Jan. 2026</div>
+      </div>
+      <div class="project-tags"><span class="tag">C++</span><span class="tag">Binôme</span></div>
+      <div class="star-row">
+        <span class="star-key">Situation</span><span class="star-val">Projet guidé par étapes dans le cadre du BUT.</span>
+        <span class="star-key">Tâche</span><span class="star-val">Développer un jeu vidéo simpliste en suivant un cahier des charges progressif.</span>
+        <span class="star-key">Action</span><span class="star-val">Apprentissage du C++, application des concepts objets, coordination régulière avec le binôme.</span>
+        <span class="star-key">Résultat</span><span class="star-val">Jeu finalisé couvrant l'ensemble des fonctionnalités demandées.</span>
+      </div>
     </div>
+
+    <div class="project-item">
+      <div class="project-top">
+        <div class="project-title">Site internet — Agence de voyage fictive Minexplo</div>
+        <div class="project-date">Oct. 2025 — Jan. 2026</div>
+      </div>
+      <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Binôme</span></div>
+      <div class="star-row">
+        <span class="star-key">Situation</span><span class="star-val">Projet de communication et développement web en binôme.</span>
+        <span class="star-key">Tâche</span><span class="star-val">Créer de toutes pièces le site d'une agence de voyage fictive.</span>
+        <span class="star-key">Action</span><span class="star-val">Définition de la charte graphique, structuration des pages, répartition claire des tâches.</span>
+        <span class="star-key">Résultat</span><span class="star-val">Site complet et cohérent présentant l'agence, ses destinations et ses services.</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-top">
+        <div class="project-title">Création d'une base de données</div>
+        <div class="project-date">Oct. 2025 — Jan. 2026</div>
+      </div>
+      <div class="project-tags"><span class="tag">SQL</span><span class="tag">Oracle</span><span class="tag">Binôme</span></div>
+      <div class="star-row">
+        <span class="star-key">Situation</span><span class="star-val">Projet réalisé seul puis en binôme à partir d'informations récoltées auprès d'une entreprise.</span>
+        <span class="star-key">Tâche</span><span class="star-val">Modéliser et implémenter une base de données relationnelle à partir de besoins réels.</span>
+        <span class="star-key">Action</span><span class="star-val">Recueil d'informations, modélisation MCD/MLD, création et alimentation de la base sous Oracle.</span>
+        <span class="star-key">Résultat</span><span class="star-val">Base de données fonctionnelle répondant aux besoins identifiés.</span>
+      </div>
+    </div>
+
+    <div class="project-item">
+      <div class="project-top">
+        <div class="project-title">Recueil de besoins pour un projet informatique</div>
+        <div class="project-date">Nov. 2025 — Jan. 2026</div>
+      </div>
+      <div class="project-tags"><span class="tag">Gestion de projet</span><span class="tag">Groupe de 4</span></div>
+      <div class="star-row">
+        <span class="star-key">Situation</span><span class="star-val">Projet en groupe de 4 personnes.</span>
+        <span class="star-key">Tâche</span><span class="star-val">Identifier et formaliser les besoins d'un commanditaire pour un site internet.</span>
+        <span class="star-key">Action</span><span class="star-val">Interviews, synthèse des besoins, rédaction du cahier des charges, coordination en équipe.</span>
+        <span class="star-key">Résultat</span><span class="star-val">Document structuré et validé, prêt pour la phase de développement.</span>
+      </div>
+    </div>
+
   </div>
-</section>
 
-<!-- CENTRES D'INTERET -->
-<div class="section-divider"></div>
-<section id="interets">
-  <p class="section-label">Centres d'intérêt</p>
-  <h2 class="section-title">Passions & Loisirs</h2>
-  <div class="interests-grid">
-    <div class="interest-group">
-      <h3>Sport</h3>
-      <p>Football — aussi bien en tant que pratiquant que spectateur. Suivi régulier des compétitions, sens du collectif et de la tactique.</p>
+  <!-- AMBITIONS + INTERETS -->
+  <div class="cards-grid" id="ambitions">
+
+    <div class="card" style="animation-delay:0.35s">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <h2 class="card-title">Ambitions</h2>
+      </div>
+      <div class="ambitions-row">
+        <div class="ambition-block">
+          <div class="ambition-term">Court terme</div>
+          <p>Stage d'Avril à Juillet 2027 en développement ou cybersécurité pour acquérir une première expérience significative.</p>
+        </div>
+        <div class="ambition-block">
+          <div class="ambition-term">Moyen terme</div>
+          <p>Intégrer Telecom SudParis pour me spécialiser en cybersécurité et approfondir mes compétences techniques.</p>
+        </div>
+        <div class="ambition-block">
+          <div class="ambition-term">Long terme</div>
+          <p>Exercer un métier d'ingénieur en cybersécurité dans un environnement exigeant où la rigueur est au cœur du quotidien.</p>
+        </div>
+      </div>
     </div>
-    <div class="interest-group">
-      <h3>Culture</h3>
-      <p>Passionné de mangas et d'animes depuis de nombreuses années. Amateur de jeux vidéo, univers qui nourrit également mon intérêt pour le développement.</p>
+
+    <div class="card" style="animation-delay:0.4s">
+      <div class="card-header">
+        <div class="card-icon">⭐</div>
+        <h2 class="card-title">Centres d'intérêt</h2>
+      </div>
+      <div class="interests-row">
+        <div class="interest-block">
+          <div class="interest-cat">⚽ Sport</div>
+          <p>Football — pratiquant et spectateur régulier. Sens du collectif et goût pour la tactique.</p>
+        </div>
+        <div class="interest-block">
+          <div class="interest-cat">🎮 Culture</div>
+          <p>Mangas, animes et jeux vidéo. Un univers qui nourrit aussi mon attrait pour le développement.</p>
+        </div>
+        <div class="interest-block">
+          <div class="interest-cat">🎵 Musique</div>
+          <p>Rap et R&B au quotidien — la musique accompagne mon travail et ma concentration.</p>
+        </div>
+      </div>
     </div>
-    <div class="interest-group">
-      <h3>Musique</h3>
-      <p>Écoute quotidienne de rap et R&B. La musique accompagne mon travail et ma créativité au quotidien.</p>
-    </div>
+
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="section-label">Contact</p>
-    <h2 class="section-title">Me contacter</h2>
+  <!-- CONTACT -->
+  <div class="card" id="contact" style="animation-delay:0.45s">
+    <div class="card-header">
+      <div class="card-icon">📬</div>
+      <h2 class="card-title">Contact</h2>
+    </div>
     <div class="contact-grid">
-      <div class="contact-item">
-        <span class="contact-item-label">Email</span>
+      <div class="contact-block">
+        <div class="contact-label">Email</div>
         <a href="mailto:tristan.jeanteaud@gmail.com">tristan.jeanteaud@gmail.com</a>
       </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Téléphone</span>
+      <div class="contact-block">
+        <div class="contact-label">Téléphone</div>
         <span>06 63 17 48 94</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Formation</span>
-        <span>BUT Informatique — IUT d'Orsay</span>
-      </div>
-      <div class="contact-item">
-        <span class="contact-item-label">Recherche</span>
-        <span>Stage Avril — Juillet 2027</span>
       </div>
     </div>
   </div>
-</section>
 
-<footer>
-  © 2025 Tristan Jeanteaud-Desbourde
-</footer>
+</div>
+
+<footer>© 2025 Tristan Jeanteaud-Desbourde</footer>
 
 </body>
 </html>
